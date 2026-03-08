@@ -3,6 +3,27 @@
     return document.getElementById(id);
   }
 
+  function setGeradorBloqueado(isLocked) {
+    const perfil = byId("perfilGerador");
+    const qtdJogos = byId("qtdJogosGerador");
+    const btnGerar = byId("btnGerarJogos");
+    const status = byId("geradorStatus");
+
+    if (perfil) perfil.disabled = isLocked;
+    if (qtdJogos) qtdJogos.disabled = isLocked;
+    if (btnGerar) btnGerar.disabled = isLocked;
+
+    document.querySelectorAll(".btn-usar-jogo, .btn-apostar-jogo").forEach((button) => {
+      button.disabled = isLocked;
+    });
+
+    if (status) {
+      status.textContent = isLocked
+        ? "Aposta finalizada. Clique em Limpar para iniciar nova rodada."
+        : "Gera jogos com filtros estatisticos e score de aderencia.";
+    }
+  }
+
   function pickUniqueNumbers() {
     const numbers = [];
     while (numbers.length < 6) {
@@ -148,6 +169,10 @@
           "<p><strong>Impar/Par:</strong> " + game.oddCount + "/" + game.evenCount + "</p>" +
           "<p><strong>Soma:</strong> " + game.sum + " | <strong>Faixas:</strong> " + game.decades + " | <strong>Sequencia max:</strong> " + game.seqRun + "</p>" +
           "<p><strong>Top global:</strong> " + game.inGlobal + " | <strong>Top ultimos 100:</strong> " + game.inRecent + "</p>" +
+          "<div class='jogo-acoes'>" +
+            "<button type='button' class='btn-usar-jogo' data-jogo='" + game.numbers.join(",") + "'>Usar este jogo</button>" +
+            "<button type='button' class='btn-apostar-jogo' data-jogo='" + game.numbers.join(",") + "'>Apostar este jogo</button>" +
+          "</div>" +
         "</article>"
       );
     });
@@ -183,7 +208,46 @@
       }
 
       renderGames(games, rules.label);
+      setGeradorBloqueado(false);
     });
+
+    const resultadoGerador = byId("resultadoGerador");
+    resultadoGerador.addEventListener("click", function (event) {
+      const button = event.target.closest(".btn-usar-jogo");
+      if (!button) {
+        return;
+      }
+      const dezenas = button.dataset.jogo
+        .split(",")
+        .map((value) => parseInt(value, 10))
+        .filter((value) => Number.isInteger(value));
+
+      if (typeof window.aplicarJogoGerado === "function") {
+        window.aplicarJogoGerado(dezenas);
+      }
+    });
+
+    resultadoGerador.addEventListener("click", function (event) {
+      const button = event.target.closest(".btn-apostar-jogo");
+      if (!button) {
+        return;
+      }
+      const dezenas = button.dataset.jogo
+        .split(",")
+        .map((value) => parseInt(value, 10))
+        .filter((value) => Number.isInteger(value));
+
+      if (typeof window.apostarJogoGerado === "function") {
+        window.apostarJogoGerado(dezenas);
+      }
+    });
+
+    document.addEventListener("mega:bet-finalizada", function () {
+      setGeradorBloqueado(true);
+    });
+
+    const rodadaFinalizada = byId("btnReiniciar") && byId("btnReiniciar").style.display === "inline";
+    setGeradorBloqueado(rodadaFinalizada);
   }
 
   init();

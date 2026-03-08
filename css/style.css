@@ -159,6 +159,13 @@ main button:hover:disabled{
     padding: 4px 6px;
     font-size: 0.85em;
 }
+.gerador select:disabled,
+.btn-gerar:disabled,
+.btn-usar-jogo:disabled,
+.btn-apostar-jogo:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 .btn-gerar{
     width: auto;
     height: auto;
@@ -186,6 +193,39 @@ main button:hover:disabled{
     color: var(--cor-verd);
     font-size: 1em;
     font-weight: 700;
+}
+.btn-usar-jogo{
+    margin-top: 6px;
+    border: 1px solid var(--cor-verd);
+    background: #fff;
+    color: var(--cor-verd);
+    border-radius: 6px;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 0.82em;
+    font-weight: 700;
+}
+.btn-usar-jogo:hover{
+    background: #f0fff4;
+}
+.jogo-acoes{
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+}
+.btn-apostar-jogo{
+    margin-top: 6px;
+    border: 1px solid var(--cor-verd);
+    background: var(--cor-verd);
+    color: #fff;
+    border-radius: 6px;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 0.82em;
+    font-weight: 700;
+}
+.btn-apostar-jogo:hover{
+    filter: brightness(1.1);
 }
 .resultadoCicle{
     display: flex;
@@ -248,5 +288,8 @@ footer #acertos{
     .btn-gerar{
         width: 100%;
         margin-left: 0;
+    }
+    .jogo-acoes{
+        flex-direction: column;
     }
 }

@@ -7,6 +7,7 @@ const btnApostar = document.getElementById('btnApostar');
 btnApostar.disabled = true;
 
 sortearNumeros();
+atualizarPainelAposta();
 
 function sortearNumeros(){
     while (resultado.length < 6) {
@@ -27,20 +28,7 @@ function selecionarNumeros(numero){
         desabilitarNumeroEscolhido(numero);
 
         // habilita o botão quando a lista por maior que 5
-        if(numerosApostados.length > 5){
-            btnApostar.disabled = false;
-
-            // mostra o valor da aposta
-            valorDaAposta();
-
-        }
-        
-        // mostrar quantidade de números apostados
-        const qtdApostas = document.getElementById("qtdNumeros");
-        qtdApostas.innerHTML = `<p> Qtd Números</p> <p class='valor'>${numerosApostados.length}</p> `
-
-        // mostra o valor da aposta
-        
+        atualizarPainelAposta();
     }
 }
 function desabilitarNumeroEscolhido(numero){
@@ -88,6 +76,45 @@ function valorDaAposta(){
     // console.log(divValorAposta);
 
 }
+function atualizarPainelAposta() {
+    btnApostar.disabled = numerosApostados.length < 6;
+    valorDaAposta();
+    const qtdApostas = document.getElementById("qtdNumeros");
+    qtdApostas.innerHTML = `<p> Qtd Números</p> <p class='valor'>${numerosApostados.length}</p> `;
+}
+function limparSelecaoAtual() {
+    for (let i = 0; i < numerosApostados.length; i++) {
+        const numero = numerosApostados[i];
+        const botao = document.getElementById("num_" + numero);
+        botao.disabled = false;
+        botao.style.color = "";
+        botao.style.background = "";
+    }
+    numerosApostados.length = 0;
+    atualizarPainelAposta();
+}
+function aplicarJogoGerado(dezenas) {
+    if (!Array.isArray(dezenas) || dezenas.length !== 6) {
+        return false;
+    }
+    if (document.getElementById("btnReiniciar").style.display === "inline") {
+        return false;
+    }
+    limparSelecaoAtual();
+    for (let i = 0; i < dezenas.length; i++) {
+        selecionarNumeros(dezenas[i]);
+    }
+    return true;
+}
+function apostarJogoGerado(dezenas) {
+    const aplicado = aplicarJogoGerado(dezenas);
+    if (!aplicado) {
+        return;
+    }
+    if (numerosApostados.length >= 6) {
+        apostar();
+    }
+}
 function apostar() {
     qtdAcertos = 0;
 
@@ -114,6 +141,7 @@ function apostar() {
 
     // habilita o botão reinicar
     document.getElementById("btnReiniciar").style.display = 'inline';
+    document.dispatchEvent(new CustomEvent("mega:bet-finalizada"));
 }
 
 function desarbilitarTodosNumeros() {
@@ -130,3 +158,6 @@ let btn = document.querySelector("#btnReiniciar");
 btn.addEventListener("click", function (){
     location.reload();
 });
+
+window.aplicarJogoGerado = aplicarJogoGerado;
+window.apostarJogoGerado = apostarJogoGerado;

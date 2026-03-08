@@ -52,3 +52,15 @@
     color: #efefef;
     border-color: #3b3b3b;
   }
+
+  [data-theme="dark"] .btn-usar-jogo {
+    background-color: #222;
+    color: #e6ffe6;
+    border-color: #2d7f2d;
+  }
+
+  [data-theme="dark"] .btn-apostar-jogo {
+    background-color: #2d7f2d;
+    color: #fff;
+    border-color: #2d7f2d;
+  }
