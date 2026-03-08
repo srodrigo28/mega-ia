@@ -1,15 +1,7 @@
 //  1 Get the theme toggle input
 const themeToggle = document.querySelector('.switch input[type="checkbox"]');
-  // Function that will switch the theme based on the if the theme toggle is checked or not
-  function switchTheme(e) {
-    if (e.target.checked) {
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-    }
-}
-  
-// 3
+
+// 2 Function that will switch the theme
 function switchTheme(e) {
     if (e.target.checked) {
       document.documentElement.setAttribute("data-theme", "dark");
@@ -25,7 +17,7 @@ function switchTheme(e) {
   }
 
 
-  // 2 Add an event listener to the theme toggle, which will switch the theme
+  // 3 Add an event listener to the theme toggle, which will switch the theme
   themeToggle.addEventListener("change", switchTheme, false);
   
   // Get the current theme from local storage

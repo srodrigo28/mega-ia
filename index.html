@@ -112,6 +112,53 @@
             <div class="resultadoCicle">00</div>
             <div class="resultadoCicle">00</div> -->
         </section>
+        <section class="estatisticas" id="estatisticas">
+            <h2>Estatisticas Oficiais</h2>
+            <p id="statsStatus">Carregando estatisticas...</p>
+
+            <h3>Top 15 dezenas mais frequentes</h3>
+            <div class="tabela-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Dezena</th>
+                            <th>Freq.</th>
+                            <th>Desvio</th>
+                            <th>Esperado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statsTopBody"></tbody>
+                </table>
+            </div>
+
+            <p><strong>Top 10 (ultimos 100 concursos):</strong> <span id="statsRecentTop">-</span></p>
+            <p><strong>Distribuicao impares (0 a 6 por concurso):</strong> <span id="statsImparPar">-</span></p>
+            <p><strong>Repeticao vs concurso anterior:</strong> <span id="statsRepeticao">-</span></p>
+            <p><strong>Faixa de soma das dezenas:</strong> <span id="statsSoma">-</span></p>
+            <p><strong>Distribuicao por faixa (01-60):</strong> <span id="statsDecades">-</span></p>
+        </section>
+        <section class="gerador" id="gerador">
+            <h2>Gerador Inteligente</h2>
+            <p>Gera jogos com filtros estatisticos e score de aderencia.</p>
+            <div class="gerador-controles">
+                <label for="perfilGerador">Perfil:</label>
+                <select id="perfilGerador">
+                    <option value="conservador">Conservador</option>
+                    <option value="equilibrado" selected>Equilibrado</option>
+                    <option value="agressivo">Agressivo</option>
+                </select>
+
+                <label for="qtdJogosGerador">Jogos:</label>
+                <select id="qtdJogosGerador">
+                    <option value="1">1</option>
+                    <option value="3" selected>3</option>
+                    <option value="5">5</option>
+                </select>
+                <button id="btnGerarJogos" class="btn btn-gerar" type="button">Gerar Jogos</button>
+            </div>
+            <div id="resultadoGerador" class="gerador-resultado"></div>
+        </section>
 
         <footer>
             <div id="valor"> <p>Valor da Aposta</p>   <p class="valor">R$ 0,00</p> </div>
@@ -120,7 +167,10 @@
         </footer>
     </div>
     
-    <script src=""></script>
+    <script src="./js/processaJogo.js"></script>
+    <script src="./js/megaEstatisticasData.js"></script>
+    <script src="./js/estatisticas.js"></script>
+    <script src="./js/geradorJogos.js"></script>
     <script src="./js/toogleScript.js"></script>
 </body>
 </html>

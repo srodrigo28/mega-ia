@@ -9,15 +9,12 @@ btnApostar.disabled = true;
 sortearNumeros();
 
 function sortearNumeros(){
-    for (i = 0; i < 6; i++){
-        let numeroSorteado = Math.round(Math.random() * 59 + 1);
-        
-        while (resultado.includes(numeroSorteado)) {
-            let numeroSorteado = Math.round(Math.random() * 59 + 1);
-            console.log(numeroSorteado);
+    while (resultado.length < 6) {
+        const numeroSorteado = Math.floor(Math.random() * 60) + 1;
+        if (resultado.includes(numeroSorteado)) {
+            continue;
         }
         resultado.push(numeroSorteado);
-        console.log(numeroSorteado);
     }
 }
 function selecionarNumeros(numero){
@@ -92,17 +89,18 @@ function valorDaAposta(){
 
 }
 function apostar() {
-    console.log('click Inicio')
+    qtdAcertos = 0;
+
     // fazer a aposta comparar as duas listas
-    for( i=0; i<numerosApostados.length; i++ ){
+    for (let i = 0; i < numerosApostados.length; i++){
         if (resultado.includes(numerosApostados[i])) {
             qtdAcertos++;
-            console.log("Quantidade de acertos: " + qtdAcertos)
         }
     }
     // mostrar o resultado
     const divResultado = document.getElementById("resultado");
-    for ( i = 0; i < resultado.length; i++){
+    divResultado.innerHTML = "";
+    for (let i = 0; i < resultado.length; i++){
         divResultado.innerHTML += "<div class='resultadoCicle'>" + resultado[i] + "</div>";
        
     }
@@ -119,7 +117,7 @@ function apostar() {
 }
 
 function desarbilitarTodosNumeros() {
-    for (i = 1; i<=60; i++){
+    for (let i = 1; i <= 60; i++){
         document.getElementById("num_"+i).disabled = true;
     }
 }

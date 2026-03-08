@@ -82,6 +82,111 @@ main button:hover:disabled{
     align-items: center;
     height: 55px;
 }
+.estatisticas{
+    text-align: left;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid var(--cor-verd);
+    border-radius: 8px;
+    background-color: #fff;
+}
+.estatisticas h2{
+    color: var(--cor-verd);
+    font-size: 1.1em;
+    margin-bottom: 6px;
+}
+.estatisticas h3{
+    color: dimgray;
+    font-size: 0.95em;
+    margin: 8px 0 4px 0;
+}
+.estatisticas p{
+    font-size: 0.8em;
+    color: #555;
+    margin: 4px 0;
+}
+.tabela-wrapper{
+    max-height: 200px;
+    overflow: auto;
+    border: 1px solid #ddd;
+}
+.estatisticas table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8em;
+}
+.estatisticas th,
+.estatisticas td{
+    padding: 4px 6px;
+    border-bottom: 1px solid #eee;
+}
+.estatisticas th{
+    position: sticky;
+    top: 0;
+    background: #f7f7f7;
+}
+.gerador{
+    text-align: left;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid var(--cor-verd);
+    border-radius: 8px;
+    background: #fff;
+}
+.gerador h2{
+    color: var(--cor-verd);
+    font-size: 1.1em;
+}
+.gerador p{
+    font-size: 0.85em;
+    color: #555;
+    margin: 4px 0;
+}
+.gerador-controles{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin: 8px 0;
+}
+.gerador label{
+    font-size: 0.85em;
+    color: #444;
+}
+.gerador select{
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-size: 0.85em;
+}
+.btn-gerar{
+    width: auto;
+    height: auto;
+    font-size: 1em;
+    margin: 0 0 0 auto;
+    padding: 8px 12px;
+}
+.gerador-resultado{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+.jogo-card{
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 8px;
+    background: #fafafa;
+}
+.jogo-card h4{
+    color: #2f2f2f;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+.jogo-card .jogo-dezenas{
+    color: var(--cor-verd);
+    font-size: 1em;
+    font-weight: 700;
+}
 .resultadoCicle{
     display: flex;
     justify-content: center;
@@ -128,5 +233,20 @@ footer #acertos{
     }
     .container{
         min-height: 450px;
+    }
+    .estatisticas{
+        padding: 6px;
+    }
+    .estatisticas p,
+    .estatisticas table,
+    .gerador p{
+        font-size: 0.72em;
+    }
+    .gerador{
+        padding: 6px;
+    }
+    .btn-gerar{
+        width: 100%;
+        margin-left: 0;
     }
 }

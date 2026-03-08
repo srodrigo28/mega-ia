@@ -19,3 +19,36 @@
   body{
     background-color: var(--bg-color);
   }
+
+  [data-theme="dark"] .estatisticas {
+    background-color: #1a1a1a;
+    color: #efefef;
+  }
+
+  [data-theme="dark"] .estatisticas h3,
+  [data-theme="dark"] .estatisticas p {
+    color: #d5d5d5;
+  }
+
+  [data-theme="dark"] .estatisticas th {
+    background-color: #222;
+    color: #efefef;
+  }
+
+  [data-theme="dark"] .gerador {
+    background-color: #1a1a1a;
+    color: #efefef;
+  }
+
+  [data-theme="dark"] .gerador p,
+  [data-theme="dark"] .gerador label,
+  [data-theme="dark"] .jogo-card h4 {
+    color: #d5d5d5;
+  }
+
+  [data-theme="dark"] .gerador select,
+  [data-theme="dark"] .jogo-card {
+    background-color: #222;
+    color: #efefef;
+    border-color: #3b3b3b;
+  }
